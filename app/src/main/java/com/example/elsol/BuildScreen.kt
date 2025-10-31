@@ -47,10 +47,12 @@ fun BuildScreen(
             SolarCard(
                 solarImage = solarImage,
                 onItemClick = { onShowSnackbar(it) },
-                onCopy = { onShowSnackbar("Copiado: $it") },
+                onCopy = {
+                    val newSolarImage = SolarImage(solarImage.name + " ", solarImage.imageRes)
+                    images = images + newSolarImage
+                },
                 onDelete = {
-                    images = images.filter { it.name != solarImage.name }
-                    onShowSnackbar("Eliminado: ${solarImage.name}")
+                    images = images.toMutableList().apply { remove(solarImage) }
                 }
             )
         }
@@ -62,7 +64,7 @@ fun BuildScreen(
 fun SolarCard(
     solarImage: SolarImage,
     onItemClick: (String) -> Unit,
-    onCopy: (String) -> Unit,
+    onCopy: () -> Unit,
     onDelete: () -> Unit
 ) {
     var showMenu by remember { mutableStateOf(false) }
@@ -100,7 +102,7 @@ fun SolarCard(
                             text = { Text("Copiar") },
                             onClick = {
                                 showMenu = false
-                                onCopy(solarImage.name)
+                                onCopy()
                             }
                         )
                         DropdownMenuItem(
