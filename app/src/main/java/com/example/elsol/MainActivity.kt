@@ -65,12 +65,12 @@ fun ElSolApp() {
     val scope = rememberCoroutineScope()
 
     val solarImages = listOf(
-        SolarImage("Sol Activo", R.drawable.erupcionsolar),
+        SolarImage("Corona Solar", R.drawable.corona_solar),
         SolarImage("Erupción Solar", R.drawable.erupcionsolar),
-        SolarImage("Corona Solar", R.drawable.erupcionsolar),
-        SolarImage("Manchas Solares", R.drawable.erupcionsolar),
-        SolarImage("Prominencia Solar", R.drawable.erupcionsolar),
-        SolarImage("Fulgor Solar", R.drawable.erupcionsolar)
+        SolarImage("Espiculas", R.drawable.espiculas),
+        SolarImage("Filamentos", R.drawable.filamentos),
+        SolarImage("Magnetosfera", R.drawable.magnetosfera),
+        SolarImage("Mancha Solar", R.drawable.manchasolar)
     )
 
     ModalNavigationDrawer(
