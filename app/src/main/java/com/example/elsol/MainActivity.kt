@@ -5,11 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Badge
@@ -34,8 +36,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -111,25 +113,40 @@ fun ElSolApp() {
         Scaffold(
             bottomBar = {
                 BottomAppBar {
-                    IconButton(onClick = { drawerOpen = true }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Abrir menú")
-                    }
-                    IconButton(onClick = { favoriteCount++ }) {
-                        BadgedBox(
-                            badge = {
-                                if (favoriteCount > 0) {
-                                    Badge { Text(favoriteCount.toString()) }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
+                        horizontalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row {
+                            IconButton(onClick = { drawerOpen = true }) {
+                                Icon(Icons.Default.ArrowBack, contentDescription = "Abrir menú")
+                            }
+
+                            IconButton(onClick = { favoriteCount++ }) {
+                                BadgedBox(
+                                    badge = {
+                                        if (favoriteCount > 0) {
+                                            Badge { Text(favoriteCount.toString()) }
+                                        }
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Favorite, contentDescription = "Favoritos")
                                 }
                             }
+                        }
+
+                        FloatingActionButton(
+                            onClick = { }
                         ) {
-                            Icon(Icons.Default.Favorite, contentDescription = "Favoritos")
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Agregar"
+                            )
                         }
                     }
-                }
-            },
-            floatingActionButton = {
-                FloatingActionButton(onClick = {}) {
-                    Icon(painterResource(R.drawable.erupcionsolar), contentDescription = "Sol")
                 }
             },
             snackbarHost = { SnackbarHost(snackbarHostState) }
