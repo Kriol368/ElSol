@@ -46,7 +46,7 @@ fun BuildScreen(
         items(images) { solarImage ->
             SolarCard(
                 solarImage = solarImage,
-                onItemClick = { onShowSnackbar("Seleccionado: $it") },
+                onItemClick = { onShowSnackbar(it) },
                 onCopy = { onShowSnackbar("Copiado: $it") },
                 onDelete = {
                     images = images.filter { it.name != solarImage.name }
