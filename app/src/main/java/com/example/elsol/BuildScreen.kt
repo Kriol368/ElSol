@@ -11,6 +11,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
@@ -99,14 +101,36 @@ fun SolarCard(
                         onDismissRequest = { showMenu = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Copiar") },
+                            text = {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Add,
+                                        contentDescription = "Copiar",
+                                        modifier = Modifier.padding(end = 8.dp)
+                                    )
+                                    Text("Copiar")
+                                }
+                            },
                             onClick = {
                                 showMenu = false
                                 onCopy()
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Eliminar") },
+                            text = {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = "Eliminar",
+                                        modifier = Modifier.padding(end = 8.dp)
+                                    )
+                                    Text("Eliminar")
+                                }
+                            },
                             onClick = {
                                 showMenu = false
                                 onDelete()
