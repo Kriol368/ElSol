@@ -44,10 +44,10 @@ fun InfoScreen() {
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
         Button(onClick = { showProgress = true }) {
-            Text("Mostrar Progreso")
+            Text("Download more info")
         }
 
         Spacer(modifier = Modifier.height(16.dp))

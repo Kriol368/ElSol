@@ -5,18 +5,24 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.BottomAppBar
@@ -32,6 +38,8 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -94,7 +102,18 @@ fun ElSolApp() {
                     contentScale = ContentScale.Crop
                 )
                 NavigationDrawerItem(
-                    label = { Text("Inicio") },
+                    label = {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Build,
+                                contentDescription = "Build",
+                                modifier = Modifier.padding(end = 12.dp)
+                            )
+                            Text("Build")
+                        }
+                    },
                     selected = navController.currentDestination?.route == "build",
                     onClick = {
                         scope.launch {
@@ -106,7 +125,18 @@ fun ElSolApp() {
                     }
                 )
                 NavigationDrawerItem(
-                    label = { Text("Info") },
+                    label = {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Info,
+                                contentDescription = "Info",
+                                modifier = Modifier.padding(end = 12.dp)
+                            )
+                            Text("Info")
+                        }
+                    },
                     selected = navController.currentDestination?.route == "info",
                     onClick = {
                         scope.launch {
@@ -116,7 +146,18 @@ fun ElSolApp() {
                     }
                 )
                 NavigationDrawerItem(
-                    label = { Text("Configuración") },
+                    label = {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Email,
+                                contentDescription = "Email",
+                                modifier = Modifier.padding(end = 12.dp)
+                            )
+                            Text("Email")
+                        }
+                    },
                     selected = false,
                     onClick = {
                         scope.launch {
@@ -130,7 +171,10 @@ fun ElSolApp() {
     ) {
         Scaffold(
             bottomBar = {
-                BottomAppBar {
+                BottomAppBar(
+                    containerColor = Color(0xFFD92222),
+                    contentColor = Color.White
+                ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
